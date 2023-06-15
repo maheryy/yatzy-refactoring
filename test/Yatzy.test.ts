@@ -161,8 +161,11 @@ describe('Large straight', () => {
 });
 
 describe('Full house', () => {
-  it('scores the sum of the full house', () => {
+  it('should score the sum of the full house', () => {
     assert.strictEqual(18, Yatzy.fullHouse(6, 2, 2, 2, 6));
+  });
+
+  it('should score 0 when there is no full house', () => {
     assert.strictEqual(0, Yatzy.fullHouse(2, 3, 4, 5, 6));
   });
 });

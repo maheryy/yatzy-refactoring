@@ -84,34 +84,18 @@ export default class Yatzy {
   }
 
   static fullHouse(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var tallies;
-    var _2 = false;
-    var i;
-    var _2_at = 0;
-    var _3 = false;
-    var _3_at = 0;
+    const allDice = [d1, d2, d3, d4, d5];
+    const targets = new Set(allDice);
 
-    tallies = [0, 0, 0, 0, 0, 0, 0, 0];
-    tallies[d1 - 1] += 1;
-    tallies[d2 - 1] += 1;
-    tallies[d3 - 1] += 1;
-    tallies[d4 - 1] += 1;
-    tallies[d5 - 1] += 1;
+    // quick check if there are only two different values
+    if (targets.size !== 2) {
+      return 0;
+    }
 
-    for (i = 0; i != 6; i += 1)
-      if (tallies[i] == 2) {
-        _2 = true;
-        _2_at = i + 1;
-      }
+    const firstValueOccurences = countOccurrence([...targets][0], allDice);
 
-    for (i = 0; i != 6; i += 1)
-      if (tallies[i] == 3) {
-        _3 = true;
-        _3_at = i + 1;
-      }
-
-    if (_2 && _3) return _2_at * 2 + _3_at * 3;
-    else return 0;
+    // when one of the two values occurs 2 or 3 times, it's automatically a full house
+    return [2, 3].includes(firstValueOccurences) ? sum(...allDice) : 0;
   }
 
   fours(): number {
