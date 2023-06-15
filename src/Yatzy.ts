@@ -16,14 +16,8 @@ export default class Yatzy {
     return sum(d1, d2, d3, d4, d5);
   }
 
-  static yatzy(...args: number[]): number {
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0];
-    for (var i = 0; i != args.length; ++i) {
-      var die = args[i];
-      counts[die - 1]++;
-    }
-    for (i = 0; i != 6; i++) if (counts[i] == 5) return 50;
-    return 0;
+  static yatzy(...dice: number[]): number {
+    return dice.some((d) => d !== dice[0]) ? 0 : 50;
   }
 
   static ones(d1: number, d2: number, d3: number, d4: number, d5: number): number {

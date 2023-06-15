@@ -10,10 +10,14 @@ describe('Chance', () => {
 });
 
 describe('Yatzy', () => {
-  it('scores 50', () => {
-    assert.strictEqual(50, Yatzy.yatzy(4, 4, 4, 4, 4));
-    assert.strictEqual(50, Yatzy.yatzy(6, 6, 6, 6, 6));
-    assert.strictEqual(0, Yatzy.yatzy(6, 6, 6, 6, 3));
+  it('should score 50 when all dice have the same value', () => {
+    assert.strictEqual(Yatzy.yatzy(4, 4, 4, 4, 4), 50);
+    assert.strictEqual(Yatzy.yatzy(6, 6, 6, 6, 6), 50);
+  });
+
+  it('should score 0 when at least one dice is different', () => {
+    assert.strictEqual(Yatzy.yatzy(6, 6, 6, 6, 3), 0);
+    assert.strictEqual(Yatzy.yatzy(6, 6, 6, 6, 3), 0);
   });
 });
 
