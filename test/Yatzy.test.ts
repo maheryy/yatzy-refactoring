@@ -139,18 +139,24 @@ describe('Four of a kind', () => {
 });
 
 describe('Small straight', () => {
-  it('scores 15', () => {
+  it('should score 15 when there is a straight sequence from 1 to 5', () => {
     assert.strictEqual(15, Yatzy.smallStraight(1, 2, 3, 4, 5));
     assert.strictEqual(15, Yatzy.smallStraight(2, 3, 4, 5, 1));
+  });
+
+  it('should score 0 when there is no full sequence from 1 to 5', () => {
     assert.strictEqual(0, Yatzy.smallStraight(1, 2, 2, 4, 5));
   });
 });
 
 describe('Large straight', () => {
-  it('scores 20', () => {
+  it('should score 20 when there is a straight sequence from 2 to 6', () => {
     assert.strictEqual(20, Yatzy.largeStraight(6, 2, 3, 4, 5));
     assert.strictEqual(20, Yatzy.largeStraight(2, 3, 4, 5, 6));
-    assert.strictEqual(0, Yatzy.largeStraight(1, 2, 2, 4, 5));
+  });
+
+  it('should score 0 when there is no full sequence from 2 to 6', () => {
+    assert.strictEqual(0, Yatzy.largeStraight(1, 2, 3, 4, 5));
   });
 });
 
