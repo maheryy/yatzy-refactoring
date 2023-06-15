@@ -92,17 +92,25 @@ describe('Sixes', () => {
 });
 
 describe('One pair', () => {
-  it('scores the sum of the highest pair', () => {
-    assert.strictEqual(6, Yatzy.score_pair(3, 4, 3, 5, 6));
-    assert.strictEqual(10, Yatzy.score_pair(5, 3, 3, 3, 5));
-    assert.strictEqual(12, Yatzy.score_pair(5, 3, 6, 6, 5));
+  it('should score the sum of the highest pair', () => {
+    assert.strictEqual(Yatzy.onePair(3, 4, 3, 5, 6), 6);
+    assert.strictEqual(Yatzy.onePair(5, 3, 3, 3, 5), 10);
+    assert.strictEqual(Yatzy.onePair(5, 3, 6, 6, 5), 12);
+  });
+
+  it('should score 0 when no pair is found', () => {
+    assert.strictEqual(Yatzy.onePair(3, 4, 1, 5, 6), 0);
   });
 });
 
 describe('Two pair', () => {
-  it('scores the sum of the two pairs', () => {
-    assert.strictEqual(16, Yatzy.two_pair(3, 3, 5, 4, 5));
-    assert.strictEqual(16, Yatzy.two_pair(3, 3, 5, 5, 5));
+  it('should score the sum of the two pairs', () => {
+    assert.strictEqual(Yatzy.twoPairs(3, 3, 5, 4, 5), 16);
+    assert.strictEqual(Yatzy.twoPairs(3, 3, 5, 5, 5), 16);
+  });
+  
+  it('should score 0 when there is no two pairs', () => {
+    assert.strictEqual(Yatzy.twoPairs(3, 3, 2, 4, 5), 0);
   });
 });
 

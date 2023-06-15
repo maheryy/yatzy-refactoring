@@ -1,4 +1,4 @@
-import { sum, sumOf } from './utils/math';
+import { countOccurrence, sum, sumOf } from './utils/math';
 
 export default class Yatzy {
   private dice: number[];
@@ -27,34 +27,40 @@ export default class Yatzy {
     return sumOf(3, [d1, d2, d3, d4, d5]);
   }
 
-  static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    counts[d1 - 1]++;
-    counts[d2 - 1]++;
-    counts[d3 - 1]++;
-    counts[d4 - 1]++;
-    counts[d5 - 1]++;
-    var at;
-    for (at = 0; at != 6; at++) if (counts[6 - at - 1] >= 2) return (6 - at) * 2;
-    return 0;
+  static onePair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    const allDice = [d1, d2, d3, d4, d5];
+    return allDice.reduce(
+      (highest, dice) =>
+        countOccurrence(dice, allDice) >= 2 && dice * 2 > highest ? dice * 2 : highest,
+      0
+    );
   }
 
-  static two_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    counts[d1 - 1]++;
-    counts[d2 - 1]++;
-    counts[d3 - 1]++;
-    counts[d4 - 1]++;
-    counts[d5 - 1]++;
-    var n = 0;
-    var score = 0;
-    for (let i = 0; i < 6; i += 1)
-      if (counts[6 - i - 1] >= 2) {
-        n++;
-        score += 6 - i;
+  static twoPairs(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    const allDice = [d1, d2, d3, d4, d5];
+    let firstPair: null | number = null;
+
+    for (const dice of allDice) {
+      // the current dice has no pair
+      if (countOccurrence(dice, allDice) < 2) {
+        continue;
       }
-    if (n == 2) return score * 2;
-    else return 0;
+
+      // first pair
+      if (firstPair === null) {
+        firstPair = dice;
+      }
+
+      // the current dice has the same value as the first found pair
+      if (firstPair === dice) {
+        continue;
+      }
+
+      // second pair is found, so return the sum of both pairs
+      return dice * 2 + firstPair * 2;
+    }
+
+    return 0;
   }
 
   static four_of_a_kind(_1: number, _2: number, d3: number, d4: number, d5: number): number {
