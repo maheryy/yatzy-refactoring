@@ -1,4 +1,4 @@
-import { countOccurrence, sum, sumOf } from './utils/math';
+import { countOccurrence, findFirstOccurrenceAbove, sum, sumOf } from './utils/math';
 
 export default class Yatzy {
   private dice: number[];
@@ -63,28 +63,12 @@ export default class Yatzy {
     return 0;
   }
 
-  static four_of_a_kind(_1: number, _2: number, d3: number, d4: number, d5: number): number {
-    var tallies;
-    tallies = [0, 0, 0, 0, 0, 0, 0, 0];
-    tallies[_1 - 1]++;
-    tallies[_2 - 1]++;
-    tallies[d3 - 1]++;
-    tallies[d4 - 1]++;
-    tallies[d5 - 1]++;
-    for (let i = 0; i < 6; i++) if (tallies[i] >= 4) return (i + 1) * 4;
-    return 0;
+  static threeOfKind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    return findFirstOccurrenceAbove(3, [d1, d2, d3, d4, d5]) * 3;
   }
 
-  static three_of_a_kind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var t;
-    t = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    t[d1 - 1]++;
-    t[d2 - 1]++;
-    t[d3 - 1]++;
-    t[d4 - 1]++;
-    t[d5 - 1]++;
-    for (let i = 0; i < 6; i++) if (t[i] >= 3) return (i + 1) * 3;
-    return 0;
+  static fourOfKind(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    return findFirstOccurrenceAbove(4, [d1, d2, d3, d4, d5]) * 4;
   }
 
   static smallStraight(d1: number, d2: number, d3: number, d4: number, d5: number): number {

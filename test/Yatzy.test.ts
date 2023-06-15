@@ -108,25 +108,33 @@ describe('Two pair', () => {
     assert.strictEqual(Yatzy.twoPairs(3, 3, 5, 4, 5), 16);
     assert.strictEqual(Yatzy.twoPairs(3, 3, 5, 5, 5), 16);
   });
-  
+
   it('should score 0 when there is no two pairs', () => {
     assert.strictEqual(Yatzy.twoPairs(3, 3, 2, 4, 5), 0);
   });
 });
 
 describe('Three of a kind', () => {
-  it('scores the sum of the three of the kind', () => {
-    assert.strictEqual(9, Yatzy.three_of_a_kind(3, 3, 3, 4, 5));
-    assert.strictEqual(15, Yatzy.three_of_a_kind(5, 3, 5, 4, 5));
-    assert.strictEqual(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 5));
+  it('should score the sum of the three of the kind', () => {
+    assert.strictEqual(Yatzy.threeOfKind(3, 3, 3, 4, 5), 9);
+    assert.strictEqual(Yatzy.threeOfKind(5, 3, 5, 4, 5), 15);
+    assert.strictEqual(Yatzy.threeOfKind(3, 3, 3, 3, 5), 9);
+  });
+
+  it('should score 0 when there is no three dice with the same value', () => {
+    assert.strictEqual(Yatzy.threeOfKind(3, 3, 2, 4, 5), 0);
   });
 });
 
 describe('Four of a kind', () => {
-  it('scores the sum of the four of the kind', () => {
-    assert.strictEqual(12, Yatzy.four_of_a_kind(3, 3, 3, 3, 5));
-    assert.strictEqual(20, Yatzy.four_of_a_kind(5, 5, 5, 4, 5));
-    assert.strictEqual(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 3));
+  it('should score the sum of the four of the kind', () => {
+    assert.strictEqual(Yatzy.fourOfKind(3, 3, 3, 3, 5), 12);
+    assert.strictEqual(Yatzy.fourOfKind(5, 5, 5, 4, 5), 20);
+    assert.strictEqual(Yatzy.fourOfKind(3, 3, 3, 3, 3), 12);
+  });
+
+  it('should score 0 when there is no four dice with the same value', () => {
+    assert.strictEqual(Yatzy.fourOfKind(2, 2, 2, 4, 5), 0);
   });
 });
 
