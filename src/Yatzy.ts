@@ -1,3 +1,5 @@
+import { sum } from './utils/math';
+
 export default class Yatzy {
   private dice: number[];
 
@@ -11,13 +13,7 @@ export default class Yatzy {
   }
 
   static chance(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var total = 0;
-    total += d1;
-    total += d2;
-    total += d3;
-    total += d4;
-    total += d5;
-    return total;
+    return sum(d1, d2, d3, d4, d5);
   }
 
   static yatzy(...args: number[]): number {
@@ -124,7 +120,8 @@ export default class Yatzy {
     tallies[d3 - 1] += 1;
     tallies[d4 - 1] += 1;
     tallies[d5 - 1] += 1;
-    if (tallies[0] == 1 && tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1) return 15;
+    if (tallies[0] == 1 && tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1)
+      return 15;
     return 0;
   }
 
@@ -136,7 +133,8 @@ export default class Yatzy {
     tallies[d3 - 1] += 1;
     tallies[d4 - 1] += 1;
     tallies[d5 - 1] += 1;
-    if (tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1 && tallies[5] == 1) return 20;
+    if (tallies[1] == 1 && tallies[2] == 1 && tallies[3] == 1 && tallies[4] == 1 && tallies[5] == 1)
+      return 20;
     return 0;
   }
 
