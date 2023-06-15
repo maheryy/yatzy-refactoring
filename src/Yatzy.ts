@@ -1,4 +1,4 @@
-import { sum } from './utils/math';
+import { sum, sumOf } from './utils/math';
 
 export default class Yatzy {
   private dice: number[];
@@ -21,35 +21,15 @@ export default class Yatzy {
   }
 
   static ones(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var sum = 0;
-    if (d1 == 1) sum++;
-    if (d2 == 1) sum++;
-    if (d3 == 1) sum++;
-    if (d4 == 1) sum++;
-    if (d5 == 1) sum++;
-
-    return sum;
+    return sumOf(1, [d1, d2, d3, d4, d5]);
   }
 
   static twos(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var sum = 0;
-    if (d1 == 2) sum += 2;
-    if (d2 == 2) sum += 2;
-    if (d3 == 2) sum += 2;
-    if (d4 == 2) sum += 2;
-    if (d5 == 2) sum += 2;
-    return sum;
+    return sumOf(2, [d1, d2, d3, d4, d5]);
   }
 
   static threes(d1: number, d2: number, d3: number, d4: number, d5: number): number {
-    var s;
-    s = 0;
-    if (d1 == 3) s += 3;
-    if (d2 == 3) s += 3;
-    if (d3 == 3) s += 3;
-    if (d4 == 3) s += 3;
-    if (d5 == 3) s += 3;
-    return s;
+    return sumOf(3, [d1, d2, d3, d4, d5]);
   }
 
   static score_pair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
