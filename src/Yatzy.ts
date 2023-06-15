@@ -3,13 +3,8 @@ import { sum, sumOf } from './utils/math';
 export default class Yatzy {
   private dice: number[];
 
-  constructor(d1: number, d2: number, d3: number, d4: number, _5: number) {
-    this.dice = [];
-    this.dice[0] = d1;
-    this.dice[1] = d2;
-    this.dice[2] = d3;
-    this.dice[3] = d4;
-    this.dice[4] = _5;
+  constructor(d1: number, d2: number, d3: number, d4: number, d5: number) {
+    this.dice = [d1, d2, d3, d4, d5];
   }
 
   static chance(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -144,26 +139,14 @@ export default class Yatzy {
   }
 
   fours(): number {
-    var sum;
-    sum = 0;
-    for (let at = 0; at != 5; at++) {
-      if (this.dice[at] == 4) {
-        sum += 4;
-      }
-    }
-    return sum;
+    return sumOf(4, this.dice);
   }
 
   fives(): number {
-    let s = 0;
-    var i;
-    for (i = 0; i < this.dice.length; i++) if (this.dice[i] == 5) s = s + 5;
-    return s;
+    return sumOf(5, this.dice);
   }
 
   sixes(): number {
-    let sum = 0;
-    for (var at = 0; at < this.dice.length; at++) if (this.dice[at] == 6) sum = sum + 6;
-    return sum;
+    return sumOf(6, this.dice);
   }
 }
