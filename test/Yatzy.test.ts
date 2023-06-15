@@ -57,37 +57,37 @@ describe('Threes', () => {
 
 describe('Fours', () => {
   it('should score the sum of 4 values', () => {
-    assert.strictEqual(new Yatzy(4, 4, 4, 5, 5).fours(), 12);
-    assert.strictEqual(new Yatzy(4, 4, 5, 5, 5).fours(), 8);
-    assert.strictEqual(new Yatzy(4, 5, 5, 5, 5).fours(), 4);
+    assert.strictEqual(Yatzy.fours(4, 4, 4, 5, 5), 12);
+    assert.strictEqual(Yatzy.fours(4, 4, 5, 5, 5), 8);
+    assert.strictEqual(Yatzy.fours(4, 5, 5, 5, 5), 4);
   });
 
   it('should score 0 when none of the dice is 4', () => {
-    assert.strictEqual(new Yatzy(5, 5, 3, 2, 1).fours(), 0);
+    assert.strictEqual(Yatzy.fours(5, 5, 3, 2, 1), 0);
   });
 });
 
 describe('Fives', () => {
   it('should score the sum of 5 values', () => {
-    assert.strictEqual(new Yatzy(4, 4, 4, 5, 5).fives(), 10);
-    assert.strictEqual(new Yatzy(4, 4, 5, 5, 5).fives(), 15);
-    assert.strictEqual(new Yatzy(4, 5, 5, 5, 5).fives(), 20);
+    assert.strictEqual(Yatzy.fives(4, 4, 4, 5, 5), 10);
+    assert.strictEqual(Yatzy.fives(4, 4, 5, 5, 5), 15);
+    assert.strictEqual(Yatzy.fives(4, 5, 5, 5, 5), 20);
   });
 
   it('should score 0 when none of the dice is 5', () => {
-    assert.strictEqual(new Yatzy(4, 6, 3, 2, 1).fives(), 0);
+    assert.strictEqual(Yatzy.fives(4, 6, 3, 2, 1), 0);
   });
 });
 
 describe('Sixes', () => {
   it('should score the sum of 6 values', () => {
-    assert.strictEqual(new Yatzy(4, 4, 4, 5, 5).sixes(), 0);
-    assert.strictEqual(new Yatzy(4, 4, 6, 5, 5).sixes(), 6);
-    assert.strictEqual(new Yatzy(6, 5, 6, 6, 5).sixes(), 18);
+    assert.strictEqual(Yatzy.sixes(4, 4, 4, 5, 5), 0);
+    assert.strictEqual(Yatzy.sixes(4, 4, 6, 5, 5), 6);
+    assert.strictEqual(Yatzy.sixes(6, 5, 6, 6, 5), 18);
   });
 
   it('should score 0 when none of the dice is 6', () => {
-    assert.strictEqual(new Yatzy(5, 5, 3, 2, 1).sixes(), 0);
+    assert.strictEqual(Yatzy.sixes(5, 5, 3, 2, 1), 0);
   });
 });
 

@@ -1,12 +1,6 @@
 import { countOccurrence, findFirstOccurrenceAbove, sum, sumOf } from './utils/math';
 
 export default class Yatzy {
-  private dice: number[];
-
-  constructor(d1: number, d2: number, d3: number, d4: number, d5: number) {
-    this.dice = [d1, d2, d3, d4, d5];
-  }
-
   static chance(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     return sum(d1, d2, d3, d4, d5);
   }
@@ -25,6 +19,18 @@ export default class Yatzy {
 
   static threes(d1: number, d2: number, d3: number, d4: number, d5: number): number {
     return sumOf(3, [d1, d2, d3, d4, d5]);
+  }
+
+  static fours(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    return sumOf(4, [d1, d2, d3, d4, d5]);
+  }
+
+  static fives(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    return sumOf(5, [d1, d2, d3, d4, d5]);
+  }
+
+  static sixes(d1: number, d2: number, d3: number, d4: number, d5: number): number {
+    return sumOf(6, [d1, d2, d3, d4, d5]);
   }
 
   static onePair(d1: number, d2: number, d3: number, d4: number, d5: number): number {
@@ -96,17 +102,5 @@ export default class Yatzy {
 
     // when one of the two values occurs 2 or 3 times, it's automatically a full house
     return [2, 3].includes(firstValueOccurences) ? sum(...allDice) : 0;
-  }
-
-  fours(): number {
-    return sumOf(4, this.dice);
-  }
-
-  fives(): number {
-    return sumOf(5, this.dice);
-  }
-
-  sixes(): number {
-    return sumOf(6, this.dice);
   }
 }
